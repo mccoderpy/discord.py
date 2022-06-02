@@ -2,7 +2,7 @@ version: 2
 formats: []
 
 build:
-  image: patch-1
+  image: 2.0
 
 sphinx:
   configuration: docs/conf.py
