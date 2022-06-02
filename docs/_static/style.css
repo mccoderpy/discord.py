@@ -183,6 +183,10 @@ img[src$="snake_dark.svg"]  {
   display: inherit;
 }
 
+main img[src$="drop_down_icon.svg"]  {
+  hidden;
+}
+
 body {
   font-family: var(--font-family);
   font-size: 16px;
@@ -319,7 +323,7 @@ header > nav > a:hover {
   border-bottom: 1px solid var(--search-border);
 
   appearance: none;
-  background-image: url('../../../images/drop_down_icon.svg');
+  background-image: url('/_images/drop_down_icon.svg');
   background-repeat: no-repeat;
   background-position-x: 100%;
   background-position-y: 50%;
