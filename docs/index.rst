@@ -3,10 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. image:: /images/drop_down_icon.svg
+
 Welcome to discord.py
 ===========================
-
-.. image:: /images/drop_down_icon.svg
 
 .. image:: /images/snake.svg
 .. image:: /images/snake_dark.svg
