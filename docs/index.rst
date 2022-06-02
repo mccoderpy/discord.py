@@ -6,6 +6,8 @@
 Welcome to discord.py
 ===========================
 
+.. image:: /images/drop_down_icon.svg
+
 .. image:: /images/snake.svg
 .. image:: /images/snake_dark.svg
 
