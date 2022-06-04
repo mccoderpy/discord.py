@@ -690,7 +690,7 @@ main h2,
 main h3 { border-bottom: 1px solid var(--main-big-headers-border); }
 main h4 { border-bottom: 1px solid var(--main-h4-header-border); }
 
-main h1 { font-size: 2.3em; }
+main h1 { font-size: 2.23em; }
 main h2 { font-size: 1.8em; }
 main h3 { font-size: 1.3em; }
 main h4 { font-size: 1.1em; }
@@ -781,9 +781,19 @@ main li {
 }
 
 main img {
-  width: 100%;
-  max-width: 500px;
+  width: auto;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+  max-width: 100%
 }
+
+div.legend img {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 
 /* weird margins */
 li > p {
@@ -1185,7 +1195,7 @@ main img.align-right {
 }
 
 /* hide the welcome text */
-section#welcome-to-discord-py > h1 {
+section#welcome-to-discord-py-message-components > h1 {
   display: none;
 }
 

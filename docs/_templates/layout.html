@@ -7,6 +7,10 @@
   {%- block extrahead %} {% endblock %}
   <!-- end extra head -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/1c42fd883f.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ pathto('_static/style.css', 1)|e }}" type="text/css" />
+  <link rel="stylesheet" href="{{ pathto('_static/codeblocks.css', 1) }}" type="text/css" />
+  <link rel="stylesheet" href="{{ pathto('_static/icons.css', 1)|e }}" type="text/css" />
   {%- block css %}
   {%- for css in css_files %}
     {%- if css|attr("filename") %}
@@ -16,9 +20,6 @@
     {%- endif %}
   {%- endfor %}
   {%- endblock %}
-  <link rel="stylesheet" href="{{ pathto('_static/style.css', 1)|e }}" type="text/css" />
-  <link rel="stylesheet" href="{{ pathto('_static/codeblocks.css', 1) }}" type="text/css" />
-  <link rel="stylesheet" href="{{ pathto('_static/icons.css', 1)|e }}" type="text/css" />
   {%- block scripts %}
   <script id="documentation_options" data-url_root="{{ pathto('', 1) }}" src="{{ pathto('_static/documentation_options.js', 1) }}"></script>
   {%- for js in script_files %}
@@ -58,9 +59,9 @@
     {#- The main navigation header #}
     <header class="grid-item">
       <nav>
-        <a href="{{ pathto(master_doc)|e }}" class="main-heading">discord.py</a>
-        <a href="https://github.com/Rapptz/discord.py" title="GitHub"><span class="material-icons custom-icons">github</span></a>
-        <a href="{{ discord_invite }}" title="{{ _('Discord') }}"><span class="material-icons fac">discord</span></a>
+        <a href="{{ pathto(master_doc)|e }}" class="main-heading">discord.py-message-components</a>
+        <a href="https://github.com/mccoderpy/discord.py-message-components" title="GitHub"><span class="fa-1x fa-brands fa-github"></span></a>
+        <a href="{{ discord_invite }}" title="{{ _('Discord') }}"><span class="fa-1x fa-brands fa-discord"></span></a>
         <a href="{{ pathto('faq') }}" title="FAQ"><span class="material-icons">help_center</span></a>
         {#- If we have more links we can put them here #}
         <a onclick="mobileSearch.open();" title="{{ _('Search') }}" id="open-search" class="mobile-only"><span class="material-icons">search</span></a>
@@ -90,15 +91,15 @@
         <option value="{{ pathto(p + '/index')|e }}" {% if pagename is prefixedwith p %}selected{% endif %}>{{ ext }}</option>
         {%- endfor %}
       </select>
-      <form id="search-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
+      <form role="search" class="search" action="{{ pathto('search') }}" method="get">
         <div class="search-wrapper">
           <input type="search" name="q" placeholder="{{ _('Search documentation') }}" />
-          <button type="submit" onmousedown="searchBarClick(event, document.getElementById('search-form'));">
+          <button type="submit">
             <span class="material-icons">search</span>
           </button>
         </div>
       </form>
-      <a accesskey="S" class="settings" onclick="settingsModal.open();"><span class="material-icons">settings</span></a>
+      <a accesskey="S" class="settings"><span class="fa-1x fa-solid fa-gear"></span></a>
     </div>
     {#- The sidebar component #}
     <aside class="grid-item">
@@ -107,18 +108,10 @@
         <span class="material-icons">menu</span>
       </span>
       {%- endif %}
-      <span id="settings-toggle" class="settings" onclick="settingsModal.open();">
-        <span class="material-icons">settings</span>
+      <span id="settings-toggle" class="settings" onclick="openModal;">
+        <span class="fa-1x fa-solid fa-gear"></span>
       </span>
       <div id="sidebar">
-        <form id="sidebar-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
-        <div class="search-wrapper search-sidebar">
-          <input type="search" name="q" placeholder="{{ _('Search documentation') }}" />
-          <button type="submit" onmousedown="searchBarClick(event, document.getElementById('sidebar-form'));">
-            <span class="material-icons">search</span>
-          </button>
-        </div>
-      </form>
         {%- include "localtoc.html" %}
       </div>
     </aside>
@@ -155,9 +148,9 @@
   </script>
   {%- endif %}
 
-  <div id="settings" class="modal" onclick="if (event.target == this){ settingsModal.close(); }" hidden>
+  <div id="settings" class="modal" onclick="if (event.target == this){ openModal(event, true); }" hidden>
     <div class="modal-content">
-      <span class="close" onclick="settingsModal.close();" title="Close">
+      <span class="close" onclick="openModal(event, true);" title="Close">
         <span class="material-icons">close</span>
       </span>
       <h1>{{ _('Settings') }}</h1>
@@ -198,7 +191,7 @@
     </div>
   </div>
 
-  <div id="to-top" onclick="scrollToTop()"{%- if READTHEDOCS %} class="is-rtd"{%- endif %} hidden>
+  <div id="to-top" onclick="scrollToTop()" {%- if READTHEDOCS %} class="is-rtd"{%- endif %} hidden>
     <span><span class="material-icons">arrow_upward</span> to top</span>
   </div>
 

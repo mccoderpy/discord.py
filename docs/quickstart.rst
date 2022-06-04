@@ -1,5 +1,3 @@
-:orphan:
-
 .. _quickstart:
 
 .. currentmodule:: discord
@@ -19,18 +17,13 @@ It looks something like this:
 
 .. code-block:: python3
 
-    # This example requires the 'message_content' intent.
-
     import discord
 
-    intents = discord.Intents.default()
-    intents.message_content = True
-
-    client = discord.Client(intents=intents)
+    client = discord.Client()
 
     @client.event
     async def on_ready():
-        print(f'We have logged in as {client.user}')
+        print('We have logged in as {0.user}'.format(client))
 
     @client.event
     async def on_message(message):
@@ -42,7 +35,7 @@ It looks something like this:
 
     client.run('your token here')
 
-Let's name this file ``example_bot.py``. Make sure not to name it ``discord.py`` as that'll conflict
+Let's name this file ``example_bot.py``. Make sure not to name it ``discord.py-message-components`` or ``discord`` as that'll conflict
 with the library.
 
 There's a lot going on here, so let's walk you through it step by step.
@@ -59,9 +52,9 @@ There's a lot going on here, so let's walk you through it step by step.
 4. Since the :func:`on_message` event triggers for *every* message received, we have to make
    sure that we ignore messages from ourselves. We do this by checking if the :attr:`Message.author`
    is the same as the :attr:`Client.user`.
-5. Afterwards, we check if the :class:`Message.content` starts with ``'$hello'``. If it does,
+5. Afterwards, we check if the :attr:`Message.content` starts with ``'$hello'``. If it does,
    then we send a message in the channel it was used in with ``'Hello!'``. This is a basic way of 
-   handling commands, which can be later automated with the :doc:`./ext/commands/index` framework.
+   handling commands, which can be later automated with the :ref:`ext.commands` framework.
 6. Finally, we run the bot with our login token. If you need help getting your token or creating a bot,
    look in the :ref:`discord-intro` section.
 

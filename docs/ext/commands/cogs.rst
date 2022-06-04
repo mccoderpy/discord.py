@@ -33,16 +33,16 @@ This example cog defines a ``Greetings`` category for your commands, with a sing
         async def on_member_join(self, member):
             channel = member.guild.system_channel
             if channel is not None:
-                await channel.send(f'Welcome {member.mention}.')
+                await channel.send('Welcome {0.mention}.'.format(member))
 
         @commands.command()
         async def hello(self, ctx, *, member: discord.Member = None):
             """Says hello"""
             member = member or ctx.author
             if self._last_member is None or self._last_member.id != member.id:
-                await ctx.send(f'Hello {member.name}~')
+                await ctx.send('Hello {0.name}~'.format(member))
             else:
-                await ctx.send(f'Hello {member.name}... This feels familiar.')
+                await ctx.send('Hello {0.name}... This feels familiar.'.format(member))
             self._last_member = member
 
 A couple of technical notes to take into consideration:
@@ -58,7 +58,7 @@ Once you have defined your cogs, you need to tell the bot to register the cogs t
 
 .. code-block:: python3
 
-    await bot.add_cog(Greetings(bot))
+    bot.add_cog(Greetings(bot))
 
 This binds the cog to the bot, adding all commands and listeners to the bot automatically.
 
@@ -66,7 +66,7 @@ Note that we reference the cog by name, which we can override through :ref:`ext_
 
 .. code-block:: python3
 
-    await bot.remove_cog('Greetings')
+    bot.remove_cog('Greetings')
 
 Using Cogs
 -------------
@@ -112,7 +112,6 @@ As cogs get more complicated and have more commands, there comes a point where w
 
 They are as follows:
 
-- :meth:`.Cog.cog_load`
 - :meth:`.Cog.cog_unload`
 - :meth:`.Cog.cog_check`
 - :meth:`.Cog.cog_command_error`

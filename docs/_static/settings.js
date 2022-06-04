@@ -98,9 +98,37 @@ for (const setting of settings) {
   setting.load();
 }
 
+function sleep(s) {
+  return new Promise(resolve => setTimeout(resolve, s * 1000));
+}
+
+async function openModal(event, close) {
+  event.target.classList.remove("fa-shake");
+  event.target.style = `${!close ? "--fa-animation-direction: reverse; " : ""}--fa-animation-duration: 1s;`;
+  event.target.classList.add("fa-spin");
+  sleep(0.5)
+    .then(() => (!close ? settingsModal.open() : settingsModal.close()))
+    .then(() => event.target.classList.remove("fa-spin"))
+    .then(() => event.target.style = `--fa-animation-duration: 1s;`)
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   settingsModal = new Modal(document.querySelector('div#settings.modal'));
   for (const setting of settings) {
     setting.setElement();
   }
+  let gearwheel = document.querySelector("div.main-grid>div>a>span")
+  gearwheel.addEventListener(
+    'mouseover',
+    (event) => {
+      event.target.style = "--fa-animation-direction: reverse; --fa-animation-duration: 3s;";
+      event.target.classList.add("fa-shake");
+    });
+  gearwheel.addEventListener(
+    'mouseout',
+    (event) => {
+      //event.target.style = "--fa-animation-duration: 20s;";
+      event.target.classList.remove("fa-shake");
+    });
+  gearwheel.addEventListener('click', openModal)
 });
